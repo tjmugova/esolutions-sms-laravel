@@ -10,9 +10,9 @@ class EsolutionsSmsSent
 {
     use Dispatchable, SerializesModels;
 
-    public Collection $response;
+    public array $response;
 
-    public function __construct(Collection $response)
+    public function __construct(array $response)
     {
         $this->response = $response;
     }
