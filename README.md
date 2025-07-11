@@ -21,20 +21,20 @@ $ composer require tjmugova/esolutions-sms-laravel
 
 ### Configuration
 
-Add your Bluedot API ID, API Password,  API Url, and From Number to your `.env`:
+Add your EsolutionsSMS username, Password,  API Url, and From  to your `.env`:
 
 ```dotenv
-BLUEDOTSMS_API_URL=https://mobile.esolutions.co.zw/bmg # always required
-BLUEDOTSMS_API_ID=ZYX # always required
-BLUEDOTSMS_API_PASSWORD=ABCD # always required
-BLUEDOTSMS_SMS_FROM=1234 # always required
+ESOLUTIONSSMS_API_URL=https://mobile.esolutions.co.zw/bmg # always required
+ESOLUTIONS_SMS_API_ID=ZYX # always required
+ESOLUTIONS_SMS_API_PASSWORD=ABCD # always required
+ESOLUTIONS_SMS_FROM=1234 # always required
 ```
 
 ### Advanced configuration
 
-Run `php artisan vendor:publish --provider="Tjmugova\BluedotSms\BluedotSmsProvider"`
+Run `php artisan vendor:publish --provider="Tjmugova\EsolutionsSms\EsolutionsSmsProvider"`
 ```
-/config/bluedot-sms.php
+/config/esolutions-sms.php
 ```
 
 ## Usage :white_check_mark:
@@ -51,25 +51,17 @@ public function send ()
     Notification::send('263777777777', new LeadAddedNotification());
     Notification::send(['263777777777', '263777777777'], new LeadAddedNotification());
 }
-```
-
-### Formatting Viber Notification
-If a notification supports being sent as a Bluedot message, you should define a toBluedotSms method on the notification class. This method will receive a $notifiable entity and should return an Snp\Notifications\Rml\Messages\ViberMessage instance. Let's take a look at a basic toRMLViber example:
-
-```
-
-use Tjmugova\BluedotSms\Messages\ViberMessage;
 ...
 
 /**
- * Get the BluedotSms representation of the notification.
+ * Get the EsolutionsSms representation of the notification.
  *
  * @param  mixed  $notifiable
- * @return Tjmugova\BluedotSms\Messages\BluedotSmsMessage
+ * @return Tjmugova\EsolutionsSms\Messages\EsolutionsSmsMessage
  */
-public function toBluedotSms($notifiable)
+public function toEsolutionsSms($notifiable)
 {
-    return (new BluedotSmsMessage('This is a test message from Laravel'));
+    return (new EsolutionsSmsMessage('This is a test message from Laravel'));
 }
 ```
 
